@@ -6,20 +6,30 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody _rigidbodyp;
     public float _speed = 10f;
-    public GameObject bullet;
+    public Transform bulletfile;
+    public GameObject _bulletPrefab;
+    public GameObject _bullet;
 // public float _rotation;
 
-    private void OnCollisionEnter(Collision col)
+
+    private void FireBullet()
     {
-        Debug.Log("bonk");
+        GameObject bullet = Instantiate(_bulletPrefab);
     }
 
-   void Start() { }
+    /* void Update OnCollisionEnter(Collision col)
+     {
+         Debug.Log("bonk");
+     }
+   */
+
+    void Start() { }
 
 
  void Update()
 
-    { if (Input.GetButtonDown("Jump")) 
+    { if (Input.GetButtonDown("Jump"))
+        { FireBullet(); }
             for (var i = 0; i < 10; i++) {
                 GameObject o = Instantiate(bullet); }
     
@@ -27,4 +37,4 @@ public class PlayerMovement : MonoBehaviour
         float v = Input.GetAxis("Vertical") * _speed;
         float r = Input.GetAxis("Horizontal") * _speed;
         _rigidbodyp.velocity = new Vector3(r, 0, v);
-     }}
+     }} 
